@@ -15,6 +15,8 @@ const forecast = (latitude, longitude, callback) => {
     } else {
       temp = body.currently.temperature;
       chanceOfPrecip = body.currently.precipProbability;
+      todayTempHigh = body.daily.data[0].temperatureHigh;
+      todayTempLow = body.daily.data[0].temperatureLow;
       callback(
         undefined,
         body.daily.data[0].summary +
@@ -23,7 +25,12 @@ const forecast = (latitude, longitude, callback) => {
           temp +
           ' degrees out.  There is a ' +
           chanceOfPrecip +
-          '% chance of rain.'
+          '% chance of rain.' +
+          'The high today was ' +
+          todayTempHigh +
+          ' and the low today was ' +
+          todayTempLow +
+          '.'
       );
     }
   });
